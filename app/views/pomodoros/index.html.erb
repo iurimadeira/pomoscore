@@ -2,11 +2,13 @@
 
 <h1>Pomodoros</h1>
 
+<h2>Total score: <%= @pomodoros.where(used_at: nil).sum(:score) %></h2>
+
 <table>
   <thead>
     <tr>
       <th>Score</th>
-      <th>Used at</th>
+      <th>When</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -15,10 +17,7 @@
     <% @pomodoros.each do |pomodoro| %>
       <tr>
         <td><%= pomodoro.score %></td>
-        <td><%= pomodoro.used_at %></td>
-        <td><%= link_to 'Show', pomodoro %></td>
-        <td><%= link_to 'Edit', edit_pomodoro_path(pomodoro) %></td>
-        <td><%= link_to 'Destroy', pomodoro, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= pomodoro.created_at.strftime('%d/%m/%y') %></td>
       </tr>
     <% end %>
   </tbody>
