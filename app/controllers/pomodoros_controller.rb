@@ -4,7 +4,7 @@ class PomodorosController < ApplicationController
   # GET /pomodoros
   # GET /pomodoros.json
   def index
-    @pomodoros = Pomodoro.all
+    @pomodoros = current_user.pomodoros
   end
 
   # GET /pomodoros/1
@@ -14,7 +14,7 @@ class PomodorosController < ApplicationController
 
   # GET /pomodoros/new
   def new
-    @pomodoro = Pomodoro.new
+    @pomodoro = current_user.pomodoros.new
   end
 
   # GET /pomodoros/1/edit
@@ -24,7 +24,7 @@ class PomodorosController < ApplicationController
   # POST /pomodoros
   # POST /pomodoros.json
   def create
-    @pomodoro = Pomodoro.new(score: current_user.default_score)
+    @pomodoro = current_user.pomodoros.new(score: current_user.default_score)
 
     respond_to do |format|
       if @pomodoro.save
@@ -69,6 +69,6 @@ class PomodorosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def pomodoro_params
-      params.require(:pomodoro).permit(:score, :used_at)
+      params.require(:pomodoro).permit(:score, :used_at, :user_id)
     end
 end
