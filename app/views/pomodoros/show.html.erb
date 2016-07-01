@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Score:</strong>
+  <%= @pomodoro.score %>
+</p>
+
+<p>
+  <strong>Used at:</strong>
+  <%= @pomodoro.used_at %>
+</p>
+
+<%= link_to 'Edit', edit_pomodoro_path(@pomodoro) %> |
+<%= link_to 'Back', pomodoros_path %>

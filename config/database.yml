@@ -1,0 +1,14 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 25
+  username: iuri
+  password: iuri
+
+development:
+  <<: *default
+  database: pomoscore_development
+
+test:
+  <<: *default
+  database: pomoscore_test
